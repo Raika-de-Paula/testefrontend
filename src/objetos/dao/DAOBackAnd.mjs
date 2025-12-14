@@ -1,5 +1,3 @@
-import Pessoa from "../pessoas/Pessoa.mjs";
-
 export default class PessoaDAO {
 
     constructor(id = null) {
