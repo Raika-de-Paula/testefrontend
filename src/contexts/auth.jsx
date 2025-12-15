@@ -4,7 +4,7 @@ import { createContext, useEffect, useState, useCallback } from "react";
 export const AuthContext = createContext({});
 
 // 🛑 MUDANÇA: A URL base agora é o seu domínio
-const API_BASE_URL = 'https://testebackend-iota.vercel.app/'; 
+const API_BASE_URL = 'https://testebackend-seven.vercel.app/'; 
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null); 
