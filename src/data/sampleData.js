@@ -3,7 +3,7 @@ export const teachers = [
     id: 1, 
     name: 'Dr. Alan Turing', 
     role: 'Coordenador de Tecnologia', 
-    topics: ['Algoritmos', 'IA', 'Segurança'],
+    topics: ['Algoritmos', 'IA', 'Segurança', 'Teoria da Computação'],
     bio: "Pioneiro na ciência da computação, apaixonado por algoritmos e inteligência artificial.",
     avatar: "https://s1.static.brasilescola.uol.com.br/img/2019/09/alan-turing-be.jpg",
     email: 'alan.turing@mentesbrilhantes.edu.br'
@@ -22,7 +22,7 @@ export const teachers = [
     id: 3, 
     name: 'Dra. Brené Brown', 
     role: 'Pesquisadora em Liderança e Vulnerabilidade', 
-    topics: ['Liderança Autêntica', 'Coragem', 'Comportamento'],
+    topics: ['Liderança Autêntica', 'Psicologia', 'Desenvolvimento Pessoal'],
     bio: "Pesquisadora e palestrante, focada na coragem, vergonha, vulnerabilidade e empatia no ambiente de trabalho.",
     avatar: "https://sextante.com.br/cdn/shop/files/Brene_Brown.png?v=1750191792&width=240",
     email: 'brene.brown@mentesbrilhantes.edu.br'
@@ -31,7 +31,7 @@ export const teachers = [
     id: 4, 
     name: 'Dra. Marie Curie', 
     role: 'Coordenadora de Ciência', 
-    topics: ['Física', 'Química', 'Pesquisa'],
+    topics: ['Física', 'Química', 'Método experimental', 'Radiotividade'],
     bio: "Dupla vencedora do Prêmio Nobel, focada em descobertas atômicas e radioatividade.",
     avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTqhVMbaNlO29H1DM9YdXdu_7n62H61HTi4A&s",
     email: 'marie.curie@mentesbrilhantes.edu.br'
@@ -41,7 +41,7 @@ export const teachers = [
     id: 5, 
     name: 'Profa. Katherine Johnson', 
     role: 'Matemática da NASA', 
-    topics: ['Cálculos Orbitais', 'Geometria Analítica', 'Aeroespacial'],
+    topics: ['Cálculos Orbitais', 'Geometria Analítica', 'Engenharia Aeroespacial'],
     bio: "Matemática que calculou as trajetórias, janelas de lançamento e caminhos de retorno de muitos voos da NASA.",
     avatar: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Katherine_Johnson_1983.jpg",
     email: 'katherine.johnson@mentesbrilhantes.edu.br'
@@ -50,7 +50,7 @@ export const teachers = [
     id: 6, 
     name: 'Profa. Nellie Bly', 
     role: 'Pioneira do Jornalismo Investigativo', 
-    topics: ['Reportagem', 'Escrita', 'Ética na Mídia'],
+    topics: ['Reportagem', 'Escrita', 'Ética na Mídia', 'Jornalismo investigativo'],
     bio: "Famosa por suas reportagens investigativas sob disfarce, definindo o padrão para o jornalismo moderno.",
     avatar: "https://fosforoeditora.fbitsstatic.net/img/b/fe2abcf8-02af-4a88-80f2-05d20fd026d2.jpg",
     email: 'nellie.bly@mentesbrilhantes.edu.br' 
@@ -77,7 +77,7 @@ export const teachers = [
     id: 9, 
     name: 'Prof. Peter Drucker', 
     role: 'Pai da Administração Moderna', 
-    topics: ['Gestão Estratégica', 'Inovação', 'Empreendedorismo'],
+    topics: ['Gestão Estratégica', 'Inovação', 'Empreendedorismo', 'Teoria administrativa'],
     bio: "Consultor de gestão e educador, cujas ideias definiram a teoria e a prática da administração moderna no século XX.",
     avatar: "https://media.treasy.com.br/media/2017/05/peter-drucker.jpg",
     email: 'peter.drucker@mentesbrilhantes.edu.br'
