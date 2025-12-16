@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { LogOut, BookOpenText, ChevronRight } from 'lucide-react';
-import useAuth from '../hooks/useAuth'; // IMPORTAÇÃO DO SEU HOOK DE AUTENTICAÇÃO
-import { useNavigate } from 'react-router-dom'; // Para redirecionar
+import useAuth from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 // --- Função Auxiliar para Formatar Dados ---
 const formatUserData = (user) => {
-    // Garante que o nome seja Capitalizado e que haja um inicial
     const name = user.nome || 'Usuário';
 
     return {
@@ -14,20 +13,18 @@ const formatUserData = (user) => {
         email: user.email || 'N/A',
         cpf: user.cpf ? user.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4') : 'N/A', // Aplica máscara
         phone: user.telefone || 'N/A',
-        dataNascimento: user.dataNascimento || 'N/A', // Adicionado Data de Nasc.
-        // Adicione outros campos necessários
+        dataNascimento: user.dataNascimento || 'N/A',
     };
 };
 
 
 // --- Subcomponente: Cartão de Perfil (Lateral Esquerda) ---
 const ProfileCard = ({ student, handleLogout }) => {
-    // Adiciona o campo Data de Nascimento no mapeamento
     const profileDetails = {
         EMAIL: student.email,
         CPF: student.cpf,
         TELEFONE: student.phone,
-        'DATA DE NASCIMENTO': student.dataNascimento, // NOVO CAMPO
+        'DATA DE NASCIMENTO': student.dataNascimento,
     };
 
     return (
@@ -120,20 +117,20 @@ const CoursesSection = ({ user }) => {
 
 // --- Componente Principal: Account (Perfil) ---
 export default function Account() {
-    const { user, signed, signout } = useAuth(); // Obtém os dados de autenticação
+    const { user, signed, signout } = useAuth();
     const navigate = useNavigate();
     
     // Funçao de Logout que chama o hook e redireciona
     const handleLogout = () => {
-        signout(); // Chama a função do AuthContext para limpar o usuário e o token
-        navigate('/'); // Redireciona para a página de Login
+        signout();
+        navigate('/');
     };
 
     // 1. Redirecionamento se não estiver logado
     if (!signed) {
         // Redireciona imediatamente para a página de login
         if (typeof window !== 'undefined') {
-            navigate('/login'); // Assumindo que a rota de login é /login ou /
+            navigate('/login');
         }
         return (
              <div className="flex justify-center items-center h-screen">

@@ -1,6 +1,5 @@
 //App.jsx
 import React, { useState } from 'react';
-// Remova 'BrowserRouter as Router' daqui:
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
@@ -47,7 +46,6 @@ const AppRoutes = () => {
   );
 };
 
-// O componente App agora deve apenas fornecer os Contextos (Auth), mas NÃO o Router.
 export default function App() {
   return (
     <AuthProvider>
