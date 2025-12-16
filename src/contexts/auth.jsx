@@ -1,9 +1,8 @@
-//arquivo contexts/auth.jsx
+// arquivo contexts/auth.jsx
 import { createContext, useEffect, useState, useCallback } from "react";
 
 export const AuthContext = createContext({});
 
-// 🛑 MUDANÇA: A URL base agora é o seu domínio
 const API_BASE_URL = 'https://testebackend-seven.vercel.app'; 
 
 export const AuthProvider = ({ children }) => {
@@ -17,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     };
 
 
-    // 🛑 Função para buscar os dados do usuário autenticado no backend
+    //  Função para buscar os dados do usuário autenticado no backend
     const fetchUserData = useCallback(async (authToken) => {
         try {
             const response = await fetch(`${API_BASE_URL}/users/me`, { 
@@ -114,6 +113,38 @@ export const AuthProvider = ({ children }) => {
     };
     
     // =========================================================
+    // FUNÇÃO: updateUser (ATUALIZAÇÃO DE PERFIL)
+    // =========================================================
+    const updateUser = async (dataToUpdate) => {
+        if (!token || !user || !user._id) return "Usuário não autenticado ou ID ausente.";
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/users/${user._id}`, {
+                method: 'PUT',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`, 
+                },
+                body: JSON.stringify(dataToUpdate),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                const updatedUser = data.user || data;
+                
+                setUser(updatedUser);
+                return null;
+            } else {
+                return data.message || "Erro ao atualizar o perfil.";
+            }
+        } catch (error) {
+            console.error("Erro na atualização do perfil:", error);
+            return "Erro de conexão ao tentar atualizar o perfil.";
+        }
+    };
+    
+    // =========================================================
     // FUNÇÃO ENROLLCOURSE (MATRÍCULA)
     // =========================================================
     const enrollCourse = async (courseId) => {
@@ -143,7 +174,7 @@ export const AuthProvider = ({ children }) => {
     };
     
     // =========================================================
-    // FUNÇÃO SIGNOUT (SAIR)
+    // FUNÇÃO SIGNOUT (SAIR) - Mantida
     // =========================================================
 
     return (
@@ -155,6 +186,7 @@ export const AuthProvider = ({ children }) => {
                 signup, 
                 signout,
                 enrollCourse,
+                updateUser,
                 token 
             }}
         >
