@@ -1,15 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 // Importe os componentes de formulário
 import LoginForm from '../components/Auth/LoginForm';
 import RegisterForm from '../components/Auth/RegisterForm'; 
-// Não precisa mais de DatePicker, useAuth, useNavigate, ou toast aqui.
+import { toast } from 'react-toastify';
 
-
-// O LoginForm e RegisterForm originais foram removidos deste arquivo.
-
-// Componente Principal: Login/Registro com Alternância de Abas
 export default function Login() {
-    const [activeTab, setActiveTab] = useState('login'); // 'login' ou 'register'
+    const [activeTab, setActiveTab] = useState('login'); 
+    const hasToastShown = useRef(false);
+
+    useEffect(()=> {
+        const redirectPath = localStorage.getItem('redirect_after_login');
+
+        if(redirectPath && !hasToastShown.current){
+
+            hasToastShown.current = true;
+            setTimeout(()=> {
+                toast.info("Faça login para matricular-se",{
+                    position: "top-right",
+                    autoClose: 5000,
+                });
+                localStorage.removeItem('redirect_after_login');
+            }, 100);
+            return;
+        }
+    },[]);
 
     const tabClass = "w-full py-3 text-lg font-extrabold uppercase border-4 border-black shadow-[4px_4px_0px_#000] transition-all duration-200";
 

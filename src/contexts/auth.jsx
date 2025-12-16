@@ -31,11 +31,12 @@ export const AuthProvider = ({ children }) => {
                 const userData = await response.json();
                 setUser(userData); 
             } else {
-                signout(); 
+                if(response.status === 401 || response.status === 403){
+                signout();
+                }
             }
         } catch (error) {
             console.error("Erro ao buscar dados do usuário:", error);
-            signout();
         }
     }, [signout, setUser]);
 
@@ -66,7 +67,7 @@ export const AuthProvider = ({ children }) => {
             if (response.ok) {
                 localStorage.setItem("user_token", JSON.stringify({ email: data.user.email, token: data.token })); 
                 setToken(data.token);
-                setUser(data.user); 
+                setUser(data.user);
                 return null; 
             } else {
                 return data.message || "Credenciais inválidas.";
@@ -111,10 +112,37 @@ export const AuthProvider = ({ children }) => {
             return "Erro de conexão com o servidor.";
         }
     };
+    //================================================
+    //FUNÇÃO: UNENROLLCOURSE (TRANCAR CURSO/REMOVER)
+    //================================================
+    const unenrollCourse = async (courseId) => {
+        if (!token) return "Usuário não autenticado.";
+
+        try{
+            const response = await fetch(`${API_BASE_URL}/users/unenroll`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ courseId }),
+            });
+            const data = await response.json();
+
+            if(response.ok) {
+                setUser(data.user);
+                return null;
+            } else {
+                return data.message || "Erro ao trancar o curso.";
+            }
+        } catch (error) {
+            return "Erro de conexão com o servidor.";
+        }
+    };
     
-    // =========================================================
+    // ============================================
     // FUNÇÃO: updateUser (ATUALIZAÇÃO DE PERFIL)
-    // =========================================================
+    // ============================================
     const updateUser = async (dataToUpdate) => {
         if (!token || !user || !user._id) return "Usuário não autenticado ou ID ausente.";
 
@@ -187,6 +215,7 @@ export const AuthProvider = ({ children }) => {
                 signout,
                 enrollCourse,
                 updateUser,
+                unenrollCourse,
                 token 
             }}
         >

@@ -73,6 +73,7 @@ const ProfileCard = ({ student, handleLogout }) => {
 // --- Subcomponente: Seção de Cursos ---
 const CoursesSection = ({ user }) => {
 
+    const navigate = useNavigate();
     const courses = user.courses || [];
     const matriculasAtivas = courses.length;
 
@@ -106,7 +107,7 @@ const CoursesSection = ({ user }) => {
                     <p className="text-gray-600 mb-6">Explore nossa grade e comece a estudar hoje mesmo.</p>
 
                     <button 
-                        onClick={()=> navigate('/courses')}
+                        onClick={()=> navigate('/Courses')}
                         className="py-3 px-8 bg-black text-white font-extrabold uppercase border-4 border-black shadow-[4px_4px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
                     >
                         EXPLORAR CURSOS
@@ -143,7 +144,6 @@ export default function Account() {
     }
     
     // 2. Formata os dados do usuário logado
-    // Nota: O 'user' do seu AuthContext contém 'nome', 'cpf', 'telefone', etc.
     const studentData = formatUserData(user); 
 
     return (

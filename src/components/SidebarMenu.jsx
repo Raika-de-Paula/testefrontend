@@ -23,8 +23,11 @@ export default function SidebarMenu({ open, onClose }) {
         className={`fixed inset-0 bg-black transition-opacity duration-300
           ${open ? 'opacity-50 z-40' : 'opacity-0 -z-10 pointer-events-none'}`} 
         onClick={onClose} />
+        
     <aside
-      className={`fixed top-0 left-0 h-full w-72 bg-white shadow-2xl transform transition-transform  duration-300 z-50
+      // 🛑 CORREÇÃO 1: REMOVA gap-3 daqui
+      // 🛑 CORREÇÃO 2: ADICIONE 'flex flex-col' para empilhar verticalmente
+      className={`fixed top-0 left-0 h-full w-72 bg-white shadow-2xl transform transition-transform  duration-300 z-50 flex flex-col
         ${open ? 'translate-x-0' : '-translate-x-full'}`}
     >
       <div className="p-4 bg-blue-500 border-2 border-black flex justify-between items-center">
@@ -36,7 +39,10 @@ export default function SidebarMenu({ open, onClose }) {
       </div>
       
       {/* Links de Navegação */}
-      <nav className="p-4 flex flex-col gap-3">
+      <nav 
+        // 🛑 CORREÇÃO 3: Adicione 'flex-grow' para a lista de links ocupar o espaço restante
+        className="p-4 flex flex-col gap-3 flex-grow overflow-y-auto"
+      >
       <Link 
         to="/" 
         className="flex items-center gap-4 w-full px-4 py-2 hover:border-spacing-[6px] border-2 border-white font-black hover:border-2 hover:border-black hover:bg-blue-500" onClick={onClose}>
@@ -67,11 +73,13 @@ export default function SidebarMenu({ open, onClose }) {
             </Link>
         )}
       </nav>
+      
+      {/* 🛑 RODAPÉ: O mt-auto funcionará agora, pois flex-grow está aplicado acima. */}
       {signed && (
-                <div className="p-4 border-t-4 border-black mt-auto">
+                <div className="p-4 pt-6 border-t-4 border-black mt-auto">
                     <button
                         onClick={handleLogout}
-                        className="flex items-center gap-4 w-full px-4 py-2 bg-red-500 text-white border-2 border-black font-extrabold uppercase shadow-[2px_2px_0px_#000] hover:bg-red-600 transition-all duration-150"
+                        className="flex items-center gap-4 w-full px-4 py-2 bg-red-500 text-white border-2 border-black font-extrabold uppercase shadow-[2px_2px_0px_#000] hover:bg-red-600 transition-all duration-150 justify-center"
                     >
                         <LogOut className="text-xl"/>
                         Sair da Conta

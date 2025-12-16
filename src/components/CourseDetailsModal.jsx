@@ -1,43 +1,85 @@
-//arquivo courseDetailModal.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react'; // CORREÇÃO 1: Adicionado useState e useEffect
 import { Clock, Calendar, User, MapPin } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 export default function CourseDetailsModal({ course, teacher, onClose }) {
   
-  const {signed, enrollCCourse} = useAuth();
+  const [isEnrolled, setIsEnrolled] = useState(false);
+  const { signed, user, enrollCourse, unenrollCourse } = useAuth(); // CORREÇÃO 2: Adicionado user
   const navigate = useNavigate();
   const professor = teacher;
 
-  const handleEnrollment = async () => {
-    if (!signed) {
-        alert('Você precisa estar logado(a) para se matricular!');
-        onClose(); // Fecha o modal
-        navigate('/login'); // Redireciona para o login
-        return;
+  // verifica se o curso já está na lista do usuario
+  useEffect(()=> {
+    // CORREÇÃO 3: Corrigido user.curses para user.courses
+    if(signed && user && user.courses){
+      const alreadyEnrolled = user.courses.some(c=> c.id === course.id);
+      setIsEnrolled(alreadyEnrolled);
     }
-    
-    // Objeto de curso simplificado para salvar (apenas dados relevantes)
-    const courseData = {
-        id: course.id,
-        title: course.title,
-        teacher: professor.name, // Nome do professor para exibição simples
-    };
+  }, [signed, user, course.id]);
+
+  const handleEnrollment = async () => {
+  //============================
+  //ROTA: USUARIO DESLOGADO
+  //============================
+    if(!signed){
+      localStorage.setItem('redirect_after_login', `/account`);
+      onClose();
+      navigate('/login');
+      return;
+    }
+    //se ja estiver matriculado, nao faz nada
+    if(isEnrolled){
+      toast.info("Você já está matriculado neste curso");
+      return;
+    }
+
+    //==========================================
+    //ROTA: USUARIO LOGADO E NAO MATRICULADO
+    //==========================================
 
     const error = await enrollCourse(course.id);
 
-    if (error) {
-        alert(`Erro na Matrícula: ${error}`);
+    if(error){
+      toast.error(`Falha na matrícula: ${error}`);
     } else {
-        alert(`Matrícula realizada com sucesso no curso: ${course.title}!`);
-        onClose();
-        navigate('/perfil'); // Redireciona para o perfil para ver o curso
+      toast.success(`Matricula realizada com sucesso no curso: ${course.title}!`, {
+        position: "top-right",
+        autoClose:5000,
+      });
+      setIsEnrolled(true);
+      onClose();
     }
-};
+  };
+
+  //=========================
+  // HANDLER: TRANCAR CURSO
+  //=========================
+
+  const handleUnenrollment = async () => {
+
+    if(!window.confirm(`Tem certeza que deseja trancar o curso "${course.title}"?`)){
+      return;
+    }
+
+    const error = await unenrollCourse(course.id);
+
+    if(error) {
+      toast.error(`Falha ao trancar o curso: ${error}`);
+    } else {
+      toast.success(`Curso trancado com sucesso: ${course.title}.`, {
+        position: "top-right",
+        autoClose: 5000,
+      });
+      setIsEnrolled(false);
+      onClose();
+    }
+  };
 
   return (
-    // Backdrop Fixo (Fundo Escuro)
+    // ... (Resto do JSX do Modal) ...
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
       
       {/* Container Principal do Modal*/}
@@ -115,12 +157,17 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
           )}
           
           {/* Botão de Matrícula*/}
-          <button 
-            className="w-full mt-8 px-8 py-3 border-4 border-black bg-black text-white font-extrabold shadow[2px_2px_#000] hover:shadow-[6px_6px_#000] transition-all duration-300 ease-in-out transform translate-y-0 hover:-translate-y-1 hover:bg-gray-800"
+          <button
+            onClick={isEnrolled ? handleUnenrollment : handleEnrollment}
+            className={`w-full mt-8 px-8 py-3 border-4 border-black font-extrabold text-white text-lg transition-all duration-300
+                ${isEnrolled
+                    ? 'bg-gray-800 hover:shadow-[6px_6px_#000] hover:translate-y-[-1px] hover:bg-red-500 hover:text-black shadow-[2px_2px_#000]'
+                    : 'bg-black hover:shadow-[6px_6px_#000] hover:translate-y-[-1px] hover:bg-gray-800 shadow-[2px_2px_#000]'
+                }
+              `}
           >
-            { signed ? 'MATRICULAR-SE AGORA' : 'FAÇA LOGIN PARA MATRICULAR-SE'}
+            {isEnrolled ? 'TRANCAR CURSO' : 'MATRICULAR-SE AGORA'}
           </button>
-          
         </div>
       </div>
     </div>

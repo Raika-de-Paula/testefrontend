@@ -50,7 +50,7 @@ const RegisterForm = ({ setActiveTab }) => {
 
         toast.success("Cadastro realizado com sucesso", {
             position: "top-right",
-            autoClose: 2000,
+            autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -58,10 +58,9 @@ const RegisterForm = ({ setActiveTab }) => {
             progress: undefined,
         });
 
-        // 🟢 MUDANÇA PARA MUDAR O ESTADO DO PAI, NÃO USAR navigate
         setTimeout(()=> {
             setActiveTab('login'); // Volta para a aba de Login
-        }, 500);
+        }, 100);
     };
 
     return (
