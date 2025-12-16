@@ -150,7 +150,11 @@ const RegisterForm = () => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-        })
+        });
+
+        setTimeout(()=> {
+            navigate("/login");
+        }, 500);
     };
 
 
