@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react'; // CORREÇÃO 1: Adicionado useState e useEffect
+import React, { useState, useEffect } from 'react';
 import { Clock, Calendar, User, MapPin } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
+// 💡 CORREÇÃO AQUI: Alert, Button, Space com letra maiúscula
+import { Alert, Button, Space } from 'antd'; 
 
 export default function CourseDetailsModal({ course, teacher, onClose }) {
   
   const [isEnrolled, setIsEnrolled] = useState(false);
-  const { signed, user, enrollCourse, unenrollCourse } = useAuth(); // CORREÇÃO 2: Adicionado user
+  const [showAlert, setShowAlert] = useState(false);
+  const { signed, user, enrollCourse, unenrollCourse } = useAuth();
   const navigate = useNavigate();
   const professor = teacher;
 
   // verifica se o curso já está na lista do usuario
   useEffect(()=> {
-    // CORREÇÃO 3: Corrigido user.curses para user.courses
     if(signed && user && user.courses){
       const alreadyEnrolled = user.courses.some(c=> c.id === course.id);
       setIsEnrolled(alreadyEnrolled);
@@ -21,6 +23,7 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
   }, [signed, user, course.id]);
 
   const handleEnrollment = async () => {
+
   //============================
   //ROTA: USUARIO DESLOGADO
   //============================
@@ -30,7 +33,6 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
       navigate('/login');
       return;
     }
-    //se ja estiver matriculado, nao faz nada
     if(isEnrolled){
       toast.info("Você já está matriculado neste curso");
       return;
@@ -58,12 +60,13 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
   // HANDLER: TRANCAR CURSO
   //=========================
 
-  const handleUnenrollment = async () => {
+  const handleUnenrollment = () =>{
+    setShowAlert(true); // Apenas mostra o alerta
+  };
 
-    if(!window.confirm(`Tem certeza que deseja trancar o curso "${course.title}"?`)){
-      return;
-    }
-
+  const confirmUnenrollment = async () => {
+    setShowAlert(false); // Esconde o alerta antes de chamar o backend
+    
     const error = await unenrollCourse(course.id);
 
     if(error) {
@@ -79,11 +82,66 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
   };
 
   return (
-    // ... (Resto do JSX do Modal) ...
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
       
       {/* Container Principal do Modal*/}
-      <div className="bg-white max-w-lg rounded-lg border-4 border-black shadow-[4px_4px_#000]"> 
+      <div className="bg-white max-w-lg rounded-lg border-4 border-black shadow-[4px_4px_#000] relative">
+        
+        {/* ALERTA DE CONFIRMAÇÃO (SOBREPOSIÇÃO) */}
+        {showAlert && (
+          <div className="absolute inset-0 bg-white/90 z-10 p-6 rounded-lg">
+            <Alert
+              style={{
+                border: '3px solid black', // border-4 border-black
+                borderRadius: 0,
+                boxShadow: '4px 4px 0px #000', // shadow-[4px_4px_0px_#000]
+                backgroundColor: 'white', // Fundo branco
+                padding: '20px',
+              }}
+              title="Confirmação Necessária"
+              description={`Tem certeza que deseja trancar o curso "${course.title}"?`}
+              type="warning"
+              showIcon
+              action={
+                <Space direction="vertical">
+                  <Button
+                    size="small"
+                    type="primary"
+                    style={{
+                        backgroundColor: 'bg-red-500', // bg-red-600
+                        borderColor: 'black', // border-black
+                        color: 'white',
+                        fontWeight: 'bold', // font-extrabold
+                        borderRadius: 0,
+                        boxShadow: '3px 3px 0px black', // shadow-[3px_3px_0px_#000]
+                    }}
+                    onClick={confirmUnenrollment} // Chama a função de remoção
+                    >
+                      TRANCAR CURSO
+                    </Button>
+                    <Button
+                        size="small"
+                        danger
+                        ghost
+                        className="w-full"
+                        style={{
+                            borderColor: 'black', 
+                            color: 'black', 
+                            fontWeight: 'bold', 
+                            borderRadius: 0,
+                            boxShadow: '3px 3px 0px black',
+                        }}
+                        onClick={()=> setShowAlert(false)} // Cancela, apenas esconde o alerta
+                        >
+                          CANCELAR
+                        </Button>
+                </Space>
+              }
+              closable
+              onClose={() => setShowAlert(false)}
+              />
+              </div>
+        )}
         
         {/* HEADER AZUL*/}
         <div className="bg-blue-500 p-4 relative border-b-4 border-black">
@@ -161,8 +219,8 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
             onClick={isEnrolled ? handleUnenrollment : handleEnrollment}
             className={`w-full mt-8 px-8 py-3 border-4 border-black font-extrabold text-white text-lg transition-all duration-300
                 ${isEnrolled
-                    ? 'bg-gray-800 hover:shadow-[6px_6px_#000] hover:translate-y-[-1px] hover:bg-red-500 hover:text-black shadow-[2px_2px_#000]'
-                    : 'bg-black hover:shadow-[6px_6px_#000] hover:translate-y-[-1px] hover:bg-gray-800 shadow-[2px_2px_#000]'
+                    ? 'bg-red-600 hover:shadow-[6px_6px_#000] hover:translate-y-[-1px] hover:bg-red-700 shadow-[2px_2px_#000]' // Cor vermelha para Trancar
+                    : 'bg-black hover:shadow-[6px_6px_#000] hover:translate-y-[-1px] hover:bg-gray-800 shadow-[2px_2px_#000]' // Cor padrão para Matricular
                 }
               `}
           >
