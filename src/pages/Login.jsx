@@ -1,8 +1,10 @@
 //arquivo pages/login
 import React, { useState } from 'react';
-import {DatePicker, Alert} from 'antd';
+import {DatePicker} from 'antd';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 //ENTRAR
@@ -140,9 +142,15 @@ const RegisterForm = () => {
             return;
         }
 
-        <Alert title="Cadastro realizado com sucesso!" type="success" showIcon />
-        // Se o cadastro for bem-sucedido
-        navigate("/login"); // Redireciona para o login após o cadastro
+        toast.success("Cadastro realizado com sucesso", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     };
 
 
