@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 // Remova 'BrowserRouter as Router' daqui:
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import Header from './components/Header';
 import SidebarMenu from './components/SidebarMenu';
@@ -50,6 +51,7 @@ const AppRoutes = () => {
 export default function App() {
   return (
     <AuthProvider>
+      <ToastContainer/>
       <AppRoutes />
     </AuthProvider>
   );
