@@ -1,6 +1,6 @@
 //arquivo pages/login
 import React, { useState } from 'react';
-import {DatePicker} from 'antd';
+import {DatePicker, Alert} from 'antd';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
@@ -140,8 +140,8 @@ const RegisterForm = () => {
             return;
         }
 
+        <Alert title="Cadastro realizado com sucesso!" type="success" showIcon />
         // Se o cadastro for bem-sucedido
-        alert("Cadastro realizado com sucesso! Faça login.");
         navigate("/login"); // Redireciona para o login após o cadastro
     };
 
