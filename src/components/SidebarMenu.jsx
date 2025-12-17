@@ -1,8 +1,8 @@
-import React from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import { FiHome } from "react-icons/fi";
 import { User, BookOpen, LogOut, UserCircle} from 'lucide-react';
 import useAuth from '../hooks/useAuth';
+import React, { useState, useEffect } from 'react';
 
 export default function SidebarMenu({ open, onClose }) {
 
