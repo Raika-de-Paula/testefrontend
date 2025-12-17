@@ -1,5 +1,7 @@
+//components/CourseDetailsModal
+
 import React, { useState, useEffect } from 'react';
-import { Clock, Calendar, User, MapPin } from 'lucide-react';
+import { Clock, Calendar, User, MapPin,  CalendarClock } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
@@ -40,12 +42,13 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
     //==========================================
     //ROTA: USUARIO LOGADO E NAO MATRICULADO
     //==========================================
-    const courseWhiTeacher  = {
+    const courseWhithFullData = {
       ...course,
-      teacher:  professor?.name || course.teacher
+      teacherEmail: professor?.email,
+      teacherName: professor?.name || course.teacher
     };
 
-    const error = await enrollCourse(courseWithTeacher);
+    const error = await enrollCourse(courseWhithFullData);
 
     if(error){
       toast.error(`Falha na matrícula: ${error}`);
@@ -198,10 +201,10 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
               
               {/* Informação 3: Local*/}
               <div className="space-y-1 pr-4">
-              <p className="text-sm">Local</p>
+              <p className="text-sm">Duração</p>
                 <div className="flex items-center space-x-2">
-                  <MapPin className="w-5 h-5 text-black"/>
-                  <p className="font-bold text-black">{course.location || 'Online/A definir'}</p>
+                  <CalendarClock className="w-5 h-5 text-black"/>
+                  <p className="font-bold text-black">{course.duration || 'indefinido'}</p>
                 </div>
               </div>
               

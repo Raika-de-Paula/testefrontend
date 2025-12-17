@@ -2,21 +2,15 @@ import { Link, useNavigate} from 'react-router-dom';
 import { FiHome } from "react-icons/fi";
 import { User, BookOpen, LogOut, UserCircle} from 'lucide-react';
 import useAuth from '../hooks/useAuth';
-import React, { useState, useEffect } from 'react';
 
 export default function SidebarMenu({ open, onClose }) {
 
   const { signed, signout } = useAuth();
-  const navigate = useNavigate();
-
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogout = () => {
     signout();
     window.location.reload();
   };
-
-  const linkClass = "flex items-center gap-4 w-full px-4 py-2 border-2 border-white font-black hover:border-2 hover:border-black hover:bg-blue-500 transition-colors duration-150";
 
   return (
     <>

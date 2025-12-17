@@ -1,6 +1,6 @@
+//pages/teachers
 import React from 'react';
 import {teachers } from '../data/sampleData';
-import { Link } from 'react-router-dom';
 import { Mail } from 'lucide-react'; 
 
 export default function Professors() { 

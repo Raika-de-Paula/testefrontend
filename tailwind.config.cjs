@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
@@ -9,6 +10,7 @@ module.exports = {
         paper: '#fffdf6'
       },
       boxShadow: {
+        // Você pode adicionar sombras brutalistas aqui depois se quiser
       }
     },
   },

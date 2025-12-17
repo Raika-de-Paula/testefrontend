@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { TiThMenu } from 'react-icons/ti';
-import { LogOut, User } from 'lucide-react'; // Manter o User apenas para Perfil se for usar em outro lugar
+import { LogOut } from 'lucide-react'; // Manter o User apenas para Perfil se for usar em outro lugar
 import useAuth from '../hooks/useAuth';
 
 export default function Header({ toggleMenu }) {
   const { signed, signout } = useAuth();
-  const navigate = useNavigate();
 
   // Estilos Comuns e Variáveis
   // -----------------------------------------------------------------
@@ -41,7 +40,7 @@ export default function Header({ toggleMenu }) {
         
         {/* Logo/Título Central */}
         <Link to="/" className="text-2xl font-black hover:text-blue-500 italic text-black">
-          PLATAFORMA <span className="bg-black text-white px-2 -skew-x-6 transform">CURSOS</span>
+          MENTES <span className="bg-black text-white px-2 -skew-x-6 transform">BRILHANTES</span>
         </Link>
 
         {/* Links/Botões de Ação na Direita */}

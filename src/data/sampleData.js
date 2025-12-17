@@ -112,10 +112,10 @@ export const teachers = [
 ];
 
 export const courses = [
-  // Cursos de Tecnologia e Design (mantidos)
   {
     id: 'c1',
     title: 'Introdução à Programação',
+    duration: '40 horas',
     desc: 'Aprenda os fundamentos da lógica de programação e escreva seus primeiros códigos.',
     teacherId: 1, 
     day: 'Segunda-feira',
@@ -126,6 +126,7 @@ export const courses = [
   {
     id: 'c2',
     title: 'Os 10 Princípios do Bom Design',
+    duration: '25 horas',
     desc: 'Domine a filosofia do design minimalista, funcional e duradouro de Dieter Rams.',
     teacherId: 2, 
     day: 'Terça-feira',
@@ -134,11 +135,11 @@ export const courses = [
     image: "https://img.freepik.com/vetores-gratis/design-grafico-em-letras-geometricas_23-2148470664.jpg?semt=ais_hybrid&w=740&q=80"
   },
   {
-    // CURSO ATUALIZADO (Antigo c3 - Marketing Digital)
     id: 'c3',
     title: 'Liderança Autêntica e Coragem',
+    duration: '30 horas',
     desc: 'Pesquisa sobre como a vulnerabilidade e a coragem impactam a liderança e a cultura empresarial.',
-    teacherId: 3, // Dra. Brené Brown
+    teacherId: 3, 
     day: 'Quarta-feira',
     time: '19:00 - 21:00',
     tag: 'Liderança',
@@ -147,6 +148,7 @@ export const courses = [
   {
     id: 'c4',
     title: 'Física Moderna e Quântica',
+    duration: '60 horas',
     desc: 'Explore as teorias de relatividade e o comportamento da matéria subatômica.',
     teacherId: 11, 
     day: 'Quinta-feira',
@@ -157,6 +159,7 @@ export const courses = [
   {
     id: 'c5',
     title: 'Design Paramétrico em Arquitetura',
+    duration: '50 horas',
     desc: 'Use algoritmos para gerar formas complexas e inovadoras no design de edifícios.',
     teacherId: 12, 
     day: 'Sexta-feira',
@@ -167,6 +170,7 @@ export const courses = [
   {
     id: 'c6',
     title: 'Fundamentos da Criptografia',
+    duration: '35 horas',
     desc: 'Entenda como funcionam os algoritmos de segurança de dados modernos.',
     teacherId: 1, 
     day: 'Segunda-feira',
@@ -177,8 +181,9 @@ export const courses = [
   {
     id: 'c7',
     title: 'Construindo Equipes Corajosas',
+    duration: '20 horas',
     desc: 'Aplicação de princípios de vulnerabilidade para criar ambientes de trabalho mais inovadores e empáticos.',
-    teacherId: 3, // Dra. Brené Brown
+    teacherId: 3, 
     day: 'Terça-feira',
     time: '10:00 - 12:00',
     tag: 'Comportamento',
@@ -187,6 +192,7 @@ export const courses = [
   {
     id: 'c8',
     title: 'Jornalismo Investigativo e Ética',
+    duration: '45 horas',
     desc: 'Técnicas de reportagem aprofundada, apuração de fatos e a coragem de expor a verdade.',
     teacherId: 6, 
     day: 'Quarta-feira',
@@ -197,6 +203,7 @@ export const courses = [
   {
     id: 'c9',
     title: 'Biologia Molecular: O Código da Vida',
+    duration: '55 horas',
     desc: 'Análise da estrutura do DNA, RNA e síntese proteica.',
     teacherId: 10, 
     day: 'Quinta-feira',
@@ -207,8 +214,9 @@ export const courses = [
   {
     id: 'c10',
     title: 'Cálculos de Trajetória Orbital',
+    duration: '80 horas',
     desc: 'Introdução à Geometria Analítica e Matemática aplicada a voos aeroespaciais e órbitas.',
-    teacherId: 5, // Profa. Katherine Johnson
+    teacherId: 5, 
     day: 'Sexta-feira',
     time: '19:00 - 21:00',
     tag: 'Matemática',
@@ -217,6 +225,7 @@ export const courses = [
   {
     id: 'c11',
     title: 'Teste de Software e QA',
+    duration: '30 horas',
     desc: 'Aprenda metodologias para garantir a qualidade de software, desde unitários até integração.',
     teacherId: 8, 
     day: 'Segunda-feira',
@@ -227,6 +236,7 @@ export const courses = [
   {
     id: 'c12',
     title: 'Análise de Algoritmos',
+    duration: '45 horas',
     desc: 'Medição da eficiência e complexidade temporal e espacial de diferentes algoritmos.',
     teacherId: 1, 
     day: 'Terça-feira',
@@ -237,6 +247,7 @@ export const courses = [
   {
     id: 'c13',
     title: 'Gestão Estratégica e Inovação',
+    duration: '40 horas',
     desc: 'Aplique os fundamentos da administração moderna de Drucker para gerenciar a mudança e a inovação.',
     teacherId: 9, 
     day: 'Quarta-feira',
@@ -246,6 +257,7 @@ export const courses = [
   {
     id: 'c14',
     title: 'Arquitetura do Kernel Linux',
+    duration: '100 horas',
     desc: 'Estudo aprofundado do design e implementação de sistemas operacionais baseados em Unix.',
     teacherId: 7, 
     day: 'Quinta-feira',
@@ -255,6 +267,7 @@ export const courses = [
   {
     id: 'c15',
     title: 'Teoria da Relatividade',
+    duration: '35 horas',
     desc: 'Entenda os princípios da Relatividade Especial e Geral e sua importância para a cosmologia.',
     teacherId: 11, 
     day: 'Sexta-feira',
@@ -264,6 +277,7 @@ export const courses = [
   {
     id: 'c16',
     title: 'Design de Interação e Estética Funcional',
+    duration: '25 horas',
     desc: 'Como aplicar a estética minimalista e funcionalidade em interfaces digitais.',
     teacherId: 2, 
     day: 'Segunda-feira',
@@ -273,6 +287,7 @@ export const courses = [
   {
     id: 'c17',
     title: 'Química e Radioatividade',
+    duration: '40 horas',
     desc: 'Estudo da decomposição atômica, isótopos e aplicações práticas da radioatividade.',
     teacherId: 4, 
     day: 'Terça-feira',
@@ -282,6 +297,7 @@ export const courses = [
   {
     id: 'c18',
     title: 'Programação Orientada a Objetos (POO)',
+    duration: '45 horas',
     desc: 'Dominando classes, herança e polimorfismo em linguagens modernas.',
     teacherId: 8, 
     day: 'Quarta-feira',
@@ -291,6 +307,7 @@ export const courses = [
   {
     id: 'c19',
     title: 'Desenvolvimento Open Source e Colaboração (GIT)',
+    duration: '15 horas',
     desc: 'Melhores práticas para contribuição em projetos abertos e domínio da ferramenta Git.',
     teacherId: 7, 
     day: 'Quinta-feira',
@@ -298,11 +315,11 @@ export const courses = [
     tag: 'Tecnologia'
   },
   {
-    // CURSO ATUALIZADO (Antigo c20 - Análise de Mídia Paga)
     id: 'c20',
     title: 'Navegação Aeroespacial e Geometria',
+    duration: '70 horas',
     desc: 'Fundamentos de geometria analítica e sistemas de coordenadas aplicados à navegação em missões espaciais.',
-    teacherId: 5, // Profa. Katherine Johnson
+    teacherId: 5, 
     day: 'Sexta-feira',
     time: '08:00 - 10:00',
     tag: 'Matemática'
@@ -310,6 +327,7 @@ export const courses = [
   {
     id: 'c21',
     title: 'Desenho Urbano Sustentável',
+    duration: '50 horas',
     desc: 'Planejamento de cidades com foco em sustentabilidade, fluxo e estética moderna.',
     teacherId: 12, 
     day: 'Sábado',

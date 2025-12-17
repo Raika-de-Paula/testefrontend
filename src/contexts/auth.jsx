@@ -175,7 +175,7 @@ export const AuthProvider = ({ children }) => {
     // =========================================================
     // FUNÇÃO ENROLLCOURSE (MATRÍCULA)
     // =========================================================
-    const enrollCourse = async (course) => { // 1. Mudamos de courseId para o objeto course
+    const enrollCourse = async (course) => {
         if (!token) return "Usuário não autenticado.";
     
         try {
@@ -185,27 +185,22 @@ export const AuthProvider = ({ children }) => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`, 
                 },
-                // 2. Enviamos o objeto mapeado com todos os campos necessários
                 body: JSON.stringify({ 
                     courseId: course.id,
                     title: course.title,
-                    teacher: course.teacher?.name || course.teacher, // Pega o nome se for objeto
+                    duration: course.duration,
+                    name: course.teacher?.name || course.teacher,
                     day: course.day,
                     time: course.time,
-                    location: course.location || 'Online/A definir',
-                    teacherEmail: course.teacherEmail || 'contato@escola.com'
+                    teacherEmail: course.email || course.teacherEmail ||  course.teacher?.email
                 }),
             });
     
             const data = await response.json();
     
             if (response.ok) {
-                // 3. Atualiza o estado global do usuário com os novos dados vindos do backend
-                setUser(data.user); 
-                
-                // Opcional: Atualizar o localStorage para persistir os dados do curso na conta
-                localStorage.setItem("user", JSON.stringify(data.user));
-                
+                // Atualiza o estado global com o objeto retornado pelo backend (data.user)
+                setUser(data.user);
                 return null;
             } else {
                 return data.message || "Erro ao matricular no curso.";

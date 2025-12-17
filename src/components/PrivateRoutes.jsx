@@ -1,3 +1,4 @@
+//components/PrivateRoutes
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import useAuth from '../hooks/useAuth'; // Ajuste o caminho conforme sua estrutura
