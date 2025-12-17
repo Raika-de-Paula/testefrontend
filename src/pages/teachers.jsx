@@ -8,7 +8,7 @@ export default function Professors() {
   const cardStyleClasses = "bg-white border-2 border-black shadow-[4px_4px_0px_black] hover:-translate-y-2 transition-transform duration-300 overflow-hidden flex flex-col";
   
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4">
       
       {/* Título Principal */}
       <div className="mb-1 text-center py-[100px]">
