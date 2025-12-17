@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import useAuth from '../hooks/useAuth'; // Importa o hook de autenticação
-import { LogOut } from 'lucide-react'; // Ícone para o botão Sair
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
+import { LogOut } from 'lucide-react';
 
 export default function Hero() {
-    const { signed, signout } = useAuth(); // Pega o estado de login e a função de logout
+    const { signed, signout } = useAuth();
+    const navigate = useNavigate();
 
     // Estilos comuns para os botões
     const buttonClass = "h-14 px-8 text-lg flex items-center border-2 border-black font-mono font-black shadow-[4px_4px_0px_black] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_black] transition-all";
@@ -18,7 +19,12 @@ export default function Hero() {
     // Função de Logout
     const handleLogout = () => {
         signout();
-    };
+        navigate('/');
+        onClose();
+        setTimeout(()=> {
+          navigate('/');
+        }, 0);
+      };
 
     return (
         <section className="container mx-auto px-4 grid md:grid-cols-2 items-center gap-8 py-32 border-b-4 border-black">

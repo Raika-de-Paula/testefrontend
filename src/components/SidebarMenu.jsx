@@ -13,6 +13,9 @@ export default function SidebarMenu({ open, onClose }) {
     signout();
     navigate('/');
     onClose();
+    setTimeout(()=> {
+      navigate('/');
+    }, 0);
   };
 
   const linkClass = "flex items-center gap-4 w-full px-4 py-2 border-2 border-white font-black hover:border-2 hover:border-black hover:bg-blue-500 transition-colors duration-150";
@@ -25,8 +28,6 @@ export default function SidebarMenu({ open, onClose }) {
         onClick={onClose} />
         
     <aside
-      // 🛑 CORREÇÃO 1: REMOVA gap-3 daqui
-      // 🛑 CORREÇÃO 2: ADICIONE 'flex flex-col' para empilhar verticalmente
       className={`fixed top-0 left-0 h-full w-72 bg-white shadow-2xl transform transition-transform  duration-300 z-50 flex flex-col
         ${open ? 'translate-x-0' : '-translate-x-full'}`}
     >
