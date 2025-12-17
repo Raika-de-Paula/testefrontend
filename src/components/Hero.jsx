@@ -19,11 +19,7 @@ export default function Hero() {
     // Função de Logout
     const handleLogout = () => {
         signout();
-        navigate('/');
-        onClose();
-        setTimeout(()=> {
-          navigate('/');
-        }, 0);
+        window.location.reload();
       };
 
     return (

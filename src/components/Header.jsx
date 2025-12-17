@@ -24,11 +24,7 @@ export default function Header({ toggleMenu }) {
 
     const handleLogout = () => {
       signout();
-      navigate('/');
-      onClose();
-      setTimeout(()=> {
-        navigate('/');
-      }, 0);
+      window.location.reload();
     };
 
   return (
