@@ -10,9 +10,9 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null); 
 
     const signout = () => {
+        localStorage.removeItem("user_token");
         setUser(null);
         setToken(null);
-        localStorage.removeItem("user_token");
     };
 
 
@@ -202,7 +202,7 @@ export const AuthProvider = ({ children }) => {
     };
     
     // =========================================================
-    // FUNÇÃO SIGNOUT (SAIR) - Mantida
+    // FUNÇÃO SIGNOUT (SAIR)
     // =========================================================
 
     return (
