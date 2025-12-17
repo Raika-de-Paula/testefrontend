@@ -9,6 +9,8 @@ export default function SidebarMenu({ open, onClose }) {
   const { signed, signout } = useAuth();
   const navigate = useNavigate();
 
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
   const handleLogout = () => {
     signout();
     navigate('/');

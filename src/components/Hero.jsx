@@ -96,7 +96,7 @@ export default function Hero() {
             
             {/* Coluna da Direita: Imagem/Ilustração */}
             <div className="p-6 border shadow-[6px_6px_0px_black] shadow-black bg-white border-black border-4">
-                <img src="/src/assets/hero-illustration.jpg" alt="alunos" />
+                <img src="https://static.vecteezy.com/system/resources/previews/047/784/205/non_2x/illustration-depicting-students-studying-on-laptops-surrounded-by-digital-resources-representing-the-evolution-of-education-free-vector.jpg" alt="alunos" />
             </div>
             
         </section>
