@@ -4,9 +4,9 @@ import useAuth from '../hooks/useAuth'; // Ajuste o caminho conforme sua estrutu
 
 // O Outlet renderiza os componentes filhos da rota protegida.
 
-const PrivateRoutes = ({Item}) => {
+const PrivateRoutes = () => {
   const { signed } = useAuth();
-  return signed > 0 ? <Item /> : <Navigate to="/" />;
+  return signed ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateRoutes;
