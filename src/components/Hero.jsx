@@ -42,12 +42,12 @@ export default function Hero() {
                 </h1>
 
                 {/* Parágrafo de Descrição com Linha Lateral */}
-                <p className="mt-8 text-xl text-gray-700 font-medium max-w-lg mx-auto md:mx-0 border-l-4 border-[#CCFF00] pl-4">
+                <p className="my-8 text-xl text-gray-700 font-medium max-w-lg mx-auto md:mx-0 border-l-4 border-[#CCFF00] pl-4">
                     Cursos gratuitos de alta qualidade com os melhores professores do mercado. Comece sua jornada hoje.
                 </p>
                 
                 {/* Botões de Ação */}
-                <div className="mt-14 flex gap-3">
+                <div className="my-8 flex gap-3">
                     
                     {/* 1. BOTÃO DA ESQUERDA (Entrar -> Explorar Cursos) - COR PRETA */}
                     {signed ? (

@@ -5,12 +5,12 @@ import { FaRegClock } from "react-icons/fa";
 
 export default function Cards(){
   return (
-    <section className="py-32">
+    <section className="mt-20">
   <div className="container mx-auto px-">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
       {/* 1. Card: CONTEÚDO PREMIUM (Amarelo) */}
-      <div className="bg-yellow-400 p-10 border-4 border-black shadow-[0.3em_0.3em_0_0_#000] hover:translate-y-[-4px]">
+      <div className="bg-yellow-500 p-10 border-4 border-black shadow-[0.3em_0.3em_0_0_#000] hover:translate-y-[-4px]">
         <div className="mb-4">
           <span className="inline-block bg-black p-2">
             <HiOutlineStar color='white' size={25}/>
@@ -23,7 +23,7 @@ export default function Cards(){
       </div>
       
       {/* 2. Card: COMUNIDADE ATIVA (Azul Claro) */}
-      <div className="bg-blue-300 p-10 border-4 border-black shadow-[0.3em_0.3em_0_0_#000] hover:translate-y-[-4px]">
+      <div className="bg-blue-500 p-10 border-4 border-black shadow-[0.3em_0.3em_0_0_#000] hover:translate-y-[-4px]">
         <div className="mb-4">
           <span className="inline-block bg-black p-2">
              <GrGroup size={25} color='white'/>
@@ -36,7 +36,7 @@ export default function Cards(){
       </div>
 
       {/* 3. Card: FLEXIBILIDADE TOTAL (Verde Claro) */}
-      <div className="bg-green-300 p-10 border-4 border-black shadow-[0.3em_0.3em_0_0_#000] hover:translate-y-[-4px]">
+      <div className="bg-green-500 p-10 border-4 border-black shadow-[0.3em_0.3em_0_0_#000] hover:translate-y-[-4px]">
         <div className="mb-4">
           <span className="inline-block bg-black p-2">
             <FaRegClock size={25} color='white'/>
