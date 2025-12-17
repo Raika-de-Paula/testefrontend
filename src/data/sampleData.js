@@ -121,7 +121,7 @@ export const courses = [
     day: 'Segunda-feira',
     time: '08:00 - 10:00',
     tag: 'Tecnologia',
-    image: 'src/assets/programacao.png'
+    image: "https://dkrn4sk0rn31v.cloudfront.net/uploads/2021/01/GUIA-INTRODU%C3%87%C3%83O-PROGRAMA%C3%87%C3%83O.png"
   },
   {
     id: 'c2',
@@ -130,7 +130,8 @@ export const courses = [
     teacherId: 2, 
     day: 'Terça-feira',
     time: '14:00 - 16:00',
-    tag: 'Design'
+    tag: 'Design',
+    image: "https://img.freepik.com/vetores-gratis/design-grafico-em-letras-geometricas_23-2148470664.jpg?semt=ais_hybrid&w=740&q=80"
   },
   {
     // CURSO ATUALIZADO (Antigo c3 - Marketing Digital)
@@ -140,7 +141,8 @@ export const courses = [
     teacherId: 3, // Dra. Brené Brown
     day: 'Quarta-feira',
     time: '19:00 - 21:00',
-    tag: 'Liderança'
+    tag: 'Liderança',
+    image: "https://abrhes.org.br/wp-content/uploads/2025/07/03_foto-artigo.jpg"
   },
   {
     id: 'c4',
@@ -149,7 +151,8 @@ export const courses = [
     teacherId: 11, 
     day: 'Quinta-feira',
     time: '10:00 - 12:00',
-    tag: 'Ciência'
+    tag: 'Ciência',
+    image: "https://thumbs.dreamstime.com/b/estrutura-at%C3%B4mica-qu%C3%A2ntica-para-f%C3%ADsica-moderna-e-design-do-vetor-de-ci%C3%AAncia-generativa-ai-%C3%ADcone-vetorial-estilizado-uma-387426818.jpg"
   },
   {
     id: 'c5',
@@ -158,7 +161,8 @@ export const courses = [
     teacherId: 12, 
     day: 'Sexta-feira',
     time: '14:00 - 17:00',
-    tag: 'Design'
+    tag: 'Design',
+    image: "https://static.vecteezy.com/ti/vetor-gratis/p1/11855508-ilustracao-de-icone-do-dos-desenhos-animados-da-paisagem-urbana-edificio-arquitetura-icone-conceito-isolado-premium-estilo-de-desenho-animado-plano-vetor.jpg"
   },
   {
     id: 'c6',
@@ -167,17 +171,18 @@ export const courses = [
     teacherId: 1, 
     day: 'Segunda-feira',
     time: '19:00 - 21:00',
-    tag: 'Tecnologia'
+    tag: 'Tecnologia',
+    image: "https://kinsta.com/wp-content/uploads/2023/07/symmetric-encryption.jpg"
   },
   {
-    // CURSO ATUALIZADO (Antigo c7 - Estratégias de Branding)
     id: 'c7',
     title: 'Construindo Equipes Corajosas',
     desc: 'Aplicação de princípios de vulnerabilidade para criar ambientes de trabalho mais inovadores e empáticos.',
     teacherId: 3, // Dra. Brené Brown
     day: 'Terça-feira',
     time: '10:00 - 12:00',
-    tag: 'Comportamento'
+    tag: 'Comportamento',
+    image: "https://static.vecteezy.com/ti/vetor-gratis/p1/10181787-trabalho-em-equipe-resolver-problema-colaboracao-trabalhar-juntos-para-alcancar-sucesso-ajuda-comunidade-encontrar-solucoes-conceitos-empresarios-construir-equipe-e-conectar-elementos-quebra-cabeca-para-construir-uma-lampada-vetor.jpg"
   },
   {
     id: 'c8',
@@ -186,7 +191,8 @@ export const courses = [
     teacherId: 6, 
     day: 'Quarta-feira',
     time: '15:00 - 17:00',
-    tag: 'Mídia'
+    tag: 'Mídia',
+    image: "https://img.freepik.com/vetores-premium/banner-de-vista-superior-do-jornalismo-no-estilo-de-arte-linha_124507-4156.jpg"
   },
   {
     id: 'c9',
@@ -195,17 +201,18 @@ export const courses = [
     teacherId: 10, 
     day: 'Quinta-feira',
     time: '08:00 - 10:00',
-    tag: 'Ciência'
+    tag: 'Ciência',
+    image: "https://www.shutterstock.com/image-vector/man-biotechnology-young-guy-medical-600nw-2525602799.jpg"
   },
   {
-    // CURSO ATUALIZADO (Antigo c10 - Introdução à Astrofísica)
     id: 'c10',
     title: 'Cálculos de Trajetória Orbital',
     desc: 'Introdução à Geometria Analítica e Matemática aplicada a voos aeroespaciais e órbitas.',
     teacherId: 5, // Profa. Katherine Johnson
     day: 'Sexta-feira',
     time: '19:00 - 21:00',
-    tag: 'Matemática'
+    tag: 'Matemática',
+    image: "https://www.if.ufrgs.br/oei/solar/solar04/ss2.jpg"
   },
   {
     id: 'c11',
@@ -214,7 +221,8 @@ export const courses = [
     teacherId: 8, 
     day: 'Segunda-feira',
     time: '14:00 - 16:00',
-    tag: 'Tecnologia'
+    tag: 'Tecnologia',
+    image: "https://sisnema.com.br/media/resize/1920x1920/blogpost/1867/5efe320ccb908.jpg"
   },
   {
     id: 'c12',
@@ -223,7 +231,8 @@ export const courses = [
     teacherId: 1, 
     day: 'Terça-feira',
     time: '08:00 - 10:00',
-    tag: 'Tecnologia'
+    tag: 'Tecnologia',
+    image: "https://oliveiraweb.com.br/wp-content/uploads/2025/01/699de060-bbe2-4bd9-9b63-fa90231877ce.jpg"
   },
   {
     id: 'c13',
