@@ -3,7 +3,6 @@ import { Clock, Calendar, User, MapPin } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-// 💡 CORREÇÃO AQUI: Alert, Button, Space com letra maiúscula
 import { Alert, Button, Space } from 'antd'; 
 
 export default function CourseDetailsModal({ course, teacher, onClose }) {
@@ -41,8 +40,12 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
     //==========================================
     //ROTA: USUARIO LOGADO E NAO MATRICULADO
     //==========================================
+    const courseWhiTeacher  = {
+      ...course,
+      teacher:  professor?.name || course.teacher
+    };
 
-    const error = await enrollCourse(course.id);
+    const error = await enrollCourse(courseWithTeacher);
 
     if(error){
       toast.error(`Falha na matrícula: ${error}`);

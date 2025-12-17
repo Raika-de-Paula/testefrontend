@@ -29,12 +29,12 @@ export default function Hero() {
             <div>
                 
                 {/* Etiqueta (Tag) */}
-                <div className="inline-block font-black text-sm bg-blue-500 text-black border-2 border-black px-3 py-1 shadow-[3px_3px_#000]">
-                    EDUCAÇÃO PARA TODOS
+                <div className="inline-block bg-blue-500 border-4 border-black p-2 mb-4 shadow-[4px_4px_0px_#000] transform -rotate-2">
+                <p className="text-sm font-bold uppercase tracking-wider text-black">EDUCAÇÃO PARA TODOS</p>
                 </div>
 
                 {/* Título Principal com Gradiente */}
-                <h1 className="text-7xl font-extrabold mt-4">
+                <h1 className="text-6xl md:text-8xl font-black uppercase leading-none tracking-tighter text-black">
                     APRENDA <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
                         SEM LIMITES
@@ -42,7 +42,7 @@ export default function Hero() {
                 </h1>
 
                 {/* Parágrafo de Descrição com Linha Lateral */}
-                <p className="mt-14 text-xl font-medium text-black max-w-md border-l-4 border-blue-500 pl-4">
+                <p className="mt-8 text-xl text-gray-700 font-medium max-w-lg mx-auto md:mx-0 border-l-4 border-[#CCFF00] pl-4">
                     Cursos gratuitos de alta qualidade com os melhores professores do mercado. Comece sua jornada hoje.
                 </p>
                 
@@ -89,12 +89,15 @@ export default function Hero() {
                     )}
                 </div>
             </div>
-            
-            {/* Coluna da Direita: Imagem/Ilustração */}
-            <div className="p-6 border shadow-[6px_6px_0px_black] shadow-black bg-white border-black border-4">
-                <img src="https://static.vecteezy.com/system/resources/previews/047/784/205/non_2x/illustration-depicting-students-studying-on-laptops-surrounded-by-digital-resources-representing-the-evolution-of-education-free-vector.jpg" alt="alunos" />
+
+            <div className="flex-1 relative">
+                <div className="border-4 border-black shadow-[8px_8px_0px_#000] bg-white p-2 transform rotate-2 hover:rotate-0 transition-all duration-500">
+                    <img src="https://static.vecteezy.com/system/resources/previews/047/784/205/non_2x/illustration-depicting-students-studying-on-laptops-surrounded-by-digital-resources-representing-the-evolution-of-education-free-vector.jpg" 
+                        alt="alunos"
+                        className="w-full h-auto object-cover border-2 border-black"
+                    />
+                </div>
             </div>
-            
         </section>
     );
 }

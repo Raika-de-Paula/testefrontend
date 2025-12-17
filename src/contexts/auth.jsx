@@ -175,9 +175,9 @@ export const AuthProvider = ({ children }) => {
     // =========================================================
     // FUNÇÃO ENROLLCOURSE (MATRÍCULA)
     // =========================================================
-    const enrollCourse = async (courseId) => {
+    const enrollCourse = async (course) => { // 1. Mudamos de courseId para o objeto course
         if (!token) return "Usuário não autenticado.";
-
+    
         try {
             const response = await fetch(`${API_BASE_URL}/users/enroll`, {
                 method: 'POST',
@@ -185,22 +185,36 @@ export const AuthProvider = ({ children }) => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`, 
                 },
-                body: JSON.stringify({ courseId }),
+                // 2. Enviamos o objeto mapeado com todos os campos necessários
+                body: JSON.stringify({ 
+                    courseId: course.id,
+                    title: course.title,
+                    teacher: course.teacher?.name || course.teacher, // Pega o nome se for objeto
+                    day: course.day,
+                    time: course.time,
+                    location: course.location || 'Online/A definir',
+                    teacherEmail: course.teacherEmail || 'contato@escola.com'
+                }),
             });
-
+    
             const data = await response.json();
-
+    
             if (response.ok) {
+                // 3. Atualiza o estado global do usuário com os novos dados vindos do backend
                 setUser(data.user); 
+                
+                // Opcional: Atualizar o localStorage para persistir os dados do curso na conta
+                localStorage.setItem("user", JSON.stringify(data.user));
+                
                 return null;
             } else {
                 return data.message || "Erro ao matricular no curso.";
             }
         } catch (error) {
+            console.error("Erro na requisição de matrícula:", error);
             return "Erro de conexão com o servidor.";
         }
     };
-    
     // =========================================================
     // FUNÇÃO SIGNOUT (SAIR)
     // =========================================================

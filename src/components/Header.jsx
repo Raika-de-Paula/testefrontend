@@ -28,7 +28,7 @@ export default function Header({ toggleMenu }) {
     };
 
   return (
-    <header className="border-b-2 border-black bg-paper fixed top-0 w-full z-40 shadow-md">
+    <header className="border-b-4 border-black bg-paper fixed top-0 w-full z-40 shadow-md">
       <div className="container mx-auto px-4 flex items-center justify-between py-2">
         
         {/* Botão do Menu Lateral */}
@@ -40,8 +40,8 @@ export default function Header({ toggleMenu }) {
         </button>
         
         {/* Logo/Título Central */}
-        <Link to="/" className="text-2xl font-bold hover:text-blue-500">
-          PLATAFORMA <span className="bg-black text-white px-2 rounded">CURSOS</span>
+        <Link to="/" className="text-2xl font-black hover:text-blue-500 italic text-black">
+          PLATAFORMA <span className="bg-black text-white px-2 -skew-x-6 transform">CURSOS</span>
         </Link>
 
         {/* Links/Botões de Ação na Direita */}
