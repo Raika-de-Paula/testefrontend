@@ -24,7 +24,7 @@ export default function Courses() {
   };
 
   return (
-    <main className="container mx-auto px-4 pt-[120px] pb-20">
+    <main className="container mx-auto px-4 pt-20 pb-20">
       <div className="text-center mb-12">
         <h1 className="text-6xl font-black uppercase italic tracking-tighter">Nossos Cursos</h1>
         <p className="text-xl text-gray-700 mt-4 max-w-2xl mx-auto font-bold">
@@ -33,7 +33,7 @@ export default function Courses() {
       </div>
 
 {/* --- BARRA DE FILTROS NA MESMA LINHA --- */}
-<div className="flex flex-col md:flex-row items-start md:items-center justify-end gap-4 mb-12">
+<div className="flex flex-col md:flex-row items-start md:items-center justify-end gap-4 mb-4">
   
   {/* Painel que se expande HORIZONTALMENTE */}
   <div className={`overflow-hidden transition-all duration-500 ease-in-out flex items-center ${isFilterOpen ? 'max-w-[1000px] opacity-100' : 'max-w-0 opacity-0'}`}>

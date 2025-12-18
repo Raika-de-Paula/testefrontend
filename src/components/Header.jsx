@@ -39,8 +39,8 @@ export default function Header({ toggleMenu }) {
         </button>
         
         {/* Logo/Título Central */}
-        <Link to="/" className="text-2xl font-black hover:text-blue-500 italic text-black">
-          MENTES <span className="bg-black text-white px-2 -skew-x-6 transform">BRILHANTES</span>
+        <Link to="/" className="text-2xl font-black hover:text-blue-500 text-black">
+          MENTES <span className="bg-black text-white px-2 -skew-x-6 rounded-lg transform">BRILHANTES</span>
         </Link>
 
         {/* Links/Botões de Ação na Direita */}
