@@ -3,7 +3,7 @@ import { createContext, useEffect, useState, useCallback } from "react";
 
 export const AuthContext = createContext({});
 
-const API_BASE_URL = 'https://testebackend-ruddy.vercel.app'; 
+const API_BASE_URL = "https://testebackend-ruddy.vercel.app/api"; 
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null); 
