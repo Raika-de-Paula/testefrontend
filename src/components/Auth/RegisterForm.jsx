@@ -53,6 +53,18 @@ const RegisterForm = ({ setActiveTab }) => {
         setFormData(prev => ({ ...prev, [id]: value }));
     };
 
+    const validateOnBlur = (e) => {
+        const { id, value } = e.target;
+        const digits = value.replace(/\D/g, '');
+    
+        if (id === 'cpf' && digits.length > 0 && digits.length < 11) {
+            setError("O CPF deve ter 11 dígitos.");
+        } 
+        else if (id === 'telefone' && digits.length > 0 && digits.length < 11) {
+            setError("O Telefone deve ter 11 dígitos (DDD + Número).");
+        }
+    };
+
     const handleDateChange = (date, dateString) => {
         setFormData(prev => ({ ...prev, dataNascimento: dateString }));
         setError('');
@@ -125,6 +137,7 @@ const RegisterForm = ({ setActiveTab }) => {
                             id="cpf"
                             value={formData.cpf}
                             onChange={handleInputChange}
+                            onBlur={validateOnBlur}
                             placeholder="000.000.000-00"
                             className="w-full border-2 border-black p-2 text-sm font-bold focus:bg-yellow-50 outline-none focus:outline-none focus:ring-4 focus:ring-blue-500"
                             required
@@ -156,6 +169,7 @@ const RegisterForm = ({ setActiveTab }) => {
                         id="telefone"
                         value={formData.telefone}
                         onChange={handleInputChange}
+                        onBlur={validateOnBlur}
                         placeholder="(00) 00000-0000"
                         className="w-full border-2 border-black p-2 text-sm font-bold focus:bg-yellow-50 outline-none focus:outline-none focus:ring-4 focus:ring-blue-500"
                         required
