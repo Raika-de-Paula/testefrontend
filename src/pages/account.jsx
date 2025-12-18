@@ -2,7 +2,6 @@ import React from 'react';
 import { LogOut, BookOpenText, Clock, Calendar, Trash2, Mail, CalendarClock } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { teachers } from '../data/sampleData';
 
 // --- Função Auxiliar para Formatar Dados ---
 const formatUserData = (user) => {
@@ -22,7 +21,7 @@ const formatUserData = (user) => {
 };
 
 // --- Subcomponente: Cartão de Perfil (Fixo e Limpo) ---
-const ProfileCard = ({ student, handleLogout }) => {
+const ProfileCard = ({ student, onLogout }) => {
     const profileDetails = {
         EMAIL: student.email,
         CPF: student.cpf,
@@ -61,7 +60,7 @@ const ProfileCard = ({ student, handleLogout }) => {
 
             <div className="p-8 pt-0 mt-auto">
                 <button
-                    onClick={handleLogout}
+                    onClick={onLogout}
                     className="w-full py-3 bg-red-500 text-white font-black uppercase text-lg border-4 border-black shadow-[4px_4px_0px_#000] transition-all hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none flex items-center justify-center gap-2"
                 >
                     <LogOut className="w-6 h-6" strokeWidth={3} />
@@ -163,6 +162,16 @@ const CoursesSection = ({ user }) => {
 // --- Página Account ---
 export default function Account() {
     const { user, signed, signout } = useAuth();
+
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        signout();
+        if(location.pathname === '/account'){
+        navigate('/');
+        window.location.reload();
+     } 
+   };
+
     if (!signed) return null;
 
     const studentData = formatUserData(user);
@@ -172,7 +181,7 @@ export default function Account() {
             <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 
                 <aside className="lg:col-span-4">
-                    <ProfileCard student={studentData} handleLogout={signout} />
+                    <ProfileCard student={studentData} onLogout={handleLogout} />
                 </aside>
 
                 <main className="lg:col-span-8">
