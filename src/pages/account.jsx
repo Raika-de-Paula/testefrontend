@@ -148,7 +148,7 @@ const CourseCard = ({ course, onUnenroll }) => {
 
       <button
         onClick={() => setShowAlert(true)}
-        className="size-12 bg-red-500 border-4 border-black shadow-[4px_4px_0px_#000] flex items-center justify-center"
+        className="size-12 bg-red-500 border-4 border-black shadow-[4px_4px_0px_#000] flex items-center justify-center hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
       >
         <Trash2 size={22} />
       </button>
