@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { FiHome } from "react-icons/fi";
 import { User, BookOpen, LogOut, UserCircle} from 'lucide-react';
 import useAuth from '../hooks/useAuth';
@@ -12,7 +12,10 @@ export default function SidebarMenu({ open, onClose }) {
     signout();
     if(location.pathname === '/account'){
       navigate('/');
-      window.location.reload();} 
+      window.location.reload();
+    } else{
+        window.location.reload();
+      } 
    };
 
   return (
