@@ -252,7 +252,8 @@ export const courses = [
     teacherId: 9, 
     day: 'Quarta-feira',
     time: '09:00 - 11:00',
-    tag: 'Negócios'
+    tag: 'Negócios',
+    image: "https://cdn.evg.gov.br/cursos/1398_EVG/imagem_curso_1398.png"
   },
   {
     id: 'c14',
@@ -262,7 +263,8 @@ export const courses = [
     teacherId: 7, 
     day: 'Quinta-feira',
     time: '14:00 - 17:00',
-    tag: 'Tecnologia'
+    tag: 'Tecnologia',
+    image: "https://blog.desdelinux.net/wp-content/uploads/2018/08/linux-kernel.jpg"
   },
   {
     id: 'c15',
@@ -272,7 +274,8 @@ export const courses = [
     teacherId: 11, 
     day: 'Sexta-feira',
     time: '10:00 - 13:00',
-    tag: 'Ciência'
+    tag: 'Ciência',
+    image: "https://s4.static.brasilescola.uol.com.br/be/2023/10/teoria-relatividade-geral-espaco-tempo.jpg"
   },
   {
     id: 'c16',
@@ -282,7 +285,8 @@ export const courses = [
     teacherId: 2, 
     day: 'Segunda-feira',
     time: '16:00 - 18:00',
-    tag: 'Design'
+    tag: 'Design',
+    image: "https://static.imasters.com.br/wp-content/uploads/2018/07/18105742/O-que-voce%CC%82-precisa-saber-sobre-o-Design-de-Interac%CC%A7a%CC%83o-.jpg"
   },
   {
     id: 'c17',
@@ -292,7 +296,8 @@ export const courses = [
     teacherId: 4, 
     day: 'Terça-feira',
     time: '19:00 - 21:00',
-    tag: 'Ciência'
+    tag: 'Ciência',
+    image: "https://media.istockphoto.com/id/936677778/pt/vetorial/danger-yellow-vector-signs-radiation-sign-biohazard-sign-toxic-sign.jpg?s=612x612&w=0&k=20&c=d7fi9GS3E6ke6Plg5y5lu5bS1Gs3Vo6uwP5E3zsGlB8="
   },
   {
     id: 'c18',
@@ -302,7 +307,8 @@ export const courses = [
     teacherId: 8, 
     day: 'Quarta-feira',
     time: '14:00 - 16:00',
-    tag: 'Tecnologia'
+    tag: 'Tecnologia',
+    image: "https://dojo.bylearn.com.br/wp-content/uploads/2020/09/dojo-7.png"
   },
   {
     id: 'c19',
@@ -312,7 +318,8 @@ export const courses = [
     teacherId: 7, 
     day: 'Quinta-feira',
     time: '19:00 - 21:00',
-    tag: 'Tecnologia'
+    tag: 'Tecnologia',
+    image: "https://assets.dio.me/FYH0KJ-d0s5-t-uF2eE2JWMZqBVCD0rARZWOJGP1bC0/f:webp/q:80/L2FydGljbGVzL2NvdmVyLzFhYzJlZTkyLTk2ZTEtNGNhYi1hYjdlLTIxMmM0NzY3ZWRhMy5wbmc",
   },
   {
     id: 'c20',
@@ -322,7 +329,8 @@ export const courses = [
     teacherId: 5, 
     day: 'Sexta-feira',
     time: '08:00 - 10:00',
-    tag: 'Matemática'
+    tag: 'Matemática',
+    image: "https://profissoes.viacarreira.com/wp-content/uploads/2025/10/engenharia-aeroespacial-1024x576-1.webp"
   },
   {
     id: 'c21',
@@ -332,6 +340,7 @@ export const courses = [
     teacherId: 12, 
     day: 'Sábado',
     time: '10:00 - 13:00',
-    tag: 'Arquitetura'
+    tag: 'Arquitetura',
+    image: "https://img.freepik.com/vetores-gratis/mao-desenhada-fundo-do-conceito-de-ecologia_23-2148200288.jpg?semt=ais_hybrid&w=740&q=80"
   },
 ];
