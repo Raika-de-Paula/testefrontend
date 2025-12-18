@@ -163,13 +163,11 @@ const CoursesSection = ({ user }) => {
 export default function Account() {
     const { user, signed, signout } = useAuth();
 
-    const navigate = useNavigate();
+ const navigate = useNavigate();
     const handleLogout = () => {
         signout();
-        if(location.pathname === '/account'){
         navigate('/');
         window.location.reload();
-     } 
    };
 
     if (!signed) return null;

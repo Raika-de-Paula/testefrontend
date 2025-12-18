@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation} from 'react-router-dom';
 import { TiThMenu } from 'react-icons/ti';
 import { LogOut } from 'lucide-react'; // Manter o User apenas para Perfil se for usar em outro lugar
 import useAuth from '../hooks/useAuth';
@@ -21,10 +21,15 @@ export default function Header({ toggleMenu }) {
     ? 'w-[100px] bg-red-500 hover:bg-red-600 text-white' // LOGADO: Sair (Vermelho, mais largo)
     : 'w-[170px] bg-blue-500 hover:bg-[#6495ed] text-black'; // DESLOGADO: Explorar Cursos (Azul, mais largo)
 
-    const handleLogout = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
       signout();
+      if(location.pathname === '/account'){
+      navigate('/');
       window.location.reload();
-    };
+    }
+    window.location.reload();
+  };
 
   return (
     <header className="border-b-4 border-black bg-paper fixed top-0 w-full z-40 shadow-md">
