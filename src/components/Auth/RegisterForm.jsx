@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { DatePicker } from 'antd';
 import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
-// Não precisamos do useNavigate se estamos usando setActiveTab
 
-// 1. Defina o componente e receba setActiveTab como prop
 const RegisterForm = ({ setActiveTab }) => { 
     const { signup } = useAuth();
     const [error, setError]= useState('');
@@ -18,7 +16,6 @@ const RegisterForm = ({ setActiveTab }) => {
         senha: '',
     });
 
-    // ... (handleInputChange e handleDateChange permanecem os mesmos)
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         setFormData(prev => ({ ...prev, [id]: value }));

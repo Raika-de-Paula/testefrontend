@@ -82,9 +82,13 @@ export const AuthProvider = ({ children }) => {
     // =========================================================
     const signup = async (nome, email, password, cpf, dataNascimento, telefone) => {
         const cpfLimpo = cpf ? cpf.replace(/\D/g, '') : '';
+        const telefoneLimpo = telefone ? telefone.replace(/\D/g, '') : '';
         
         if (cpfLimpo.length !== 11) {
-            return "O CPF deve conter exatamente 11 dígitos.";
+            return "O CPF deve conter exatamente 11 dígitos. Exemplo: 000.000.000-00";
+        }
+        if (telefoneLimpo.length !== 11) {
+            return "O numero de telefone deve conter exatamente 11 dígitos. Exemplo: (00) 00000-0000";
         }
 
         try {
@@ -97,7 +101,7 @@ export const AuthProvider = ({ children }) => {
                     password, 
                     cpf: cpfLimpo, 
                     dataNascimento, 
-                    telefone 
+                    telefone: telefoneLimpo
                 }),
             });
 
@@ -139,39 +143,7 @@ export const AuthProvider = ({ children }) => {
             return "Erro de conexão com o servidor.";
         }
     };
-    
-    // ============================================
-    // FUNÇÃO: updateUser (ATUALIZAÇÃO DE PERFIL)
-    // ============================================
-    const updateUser = async (dataToUpdate) => {
-        if (!token || !user || !user._id) return "Usuário não autenticado ou ID ausente.";
 
-        try {
-            const response = await fetch(`${API_BASE_URL}/users/${user._id}`, {
-                method: 'PUT',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`, 
-                },
-                body: JSON.stringify(dataToUpdate),
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                const updatedUser = data.user || data;
-                
-                setUser(updatedUser);
-                return null;
-            } else {
-                return data.message || "Erro ao atualizar o perfil.";
-            }
-        } catch (error) {
-            console.error("Erro na atualização do perfil:", error);
-            return "Erro de conexão ao tentar atualizar o perfil.";
-        }
-    };
-    
     // =========================================================
     // FUNÇÃO ENROLLCOURSE (MATRÍCULA)
     // =========================================================
@@ -223,7 +195,6 @@ export const AuthProvider = ({ children }) => {
                 signup, 
                 signout,
                 enrollCourse,
-                updateUser,
                 unenrollCourse,
                 token 
             }}
