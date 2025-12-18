@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { DatePicker } from 'antd';
 import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
+import dayjs from 'dayjs'; // Recomendado para o DatePicker do AntD v5
 
-const RegisterForm = ({ setActiveTab }) => { 
+const RegisterForm = ({ setActiveTab }) => {
     const { signup } = useAuth();
-    const [error, setError]= useState('');
+    const [error, setError] = useState('');
 
     const [formData, setFormData] = useState({
         nome: '',
@@ -16,12 +17,42 @@ const RegisterForm = ({ setActiveTab }) => {
         senha: '',
     });
 
+    // --- Máscaras de Input ---
+    const maskCPF = (value) => {
+        return value
+            .replace(/\D/g, '')
+            .slice(0, 11)
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    };
+
+    const maskPhone = (value) => {
+        return value
+            .replace(/\D/g, '')
+            .slice(0, 11)
+            .replace(/(\d{2})(\d)/, '($1) $2')
+            .replace(/(\d{5})(\d)/, '$1-$2');
+    };
+
+    // --- Handlers ---
     const handleInputChange = (e) => {
         const { id, value } = e.target;
-        setFormData(prev => ({ ...prev, [id]: value }));
         setError('');
+
+        if (id === 'cpf') {
+            setFormData(prev => ({ ...prev, cpf: maskCPF(value) }));
+            return;
+        }
+
+        if (id === 'telefone') {
+            setFormData(prev => ({ ...prev, telefone: maskPhone(value) }));
+            return;
+        }
+
+        setFormData(prev => ({ ...prev, [id]: value }));
     };
-    
+
     const handleDateChange = (date, dateString) => {
         setFormData(prev => ({ ...prev, dataNascimento: dateString }));
         setError('');
@@ -45,84 +76,130 @@ const RegisterForm = ({ setActiveTab }) => {
             return;
         }
 
-        toast.success("Cadastro realizado com sucesso", {
+        toast.success("Cadastro realizado com sucesso!", {
             position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
+            autoClose: 3000,
         });
 
-        setTimeout(()=> {
-            setActiveTab('login'); // Volta para a aba de Login
-        }, 100);
+        setTimeout(() => {
+            setActiveTab('login');
+        }, 1500);
     };
 
     return (
-        <div className="p-0">
-            {/* ... (Todo o JSX do formulário, incluindo o header, inputs e botão) ... */}
-            
-            <div className="bg-blue-500 text-black p-6 mb-8">
-                <h2 className="text-xl font-extrabold uppercase mb-1">NOVO ALUNO</h2>
-                <p className="text-sm">Preencha seus dados para começar a estudar.</p>
+        <div className="p-0 border-2 border-black bg-white shadow-[8px_8px_0px_#000]">
+            {/* Header do Formulário */}
+            <div className="bg-blue-500 text-black p-6 border-b-4 border-black">
+                <h2 className="text-2xl font-black uppercase mb-1 italic">Novo Aluno</h2>
+                <p className="text-sm font-bold uppercase tracking-tight">Preencha seus dados para começar a estudar.</p>
             </div>
-            
-            <form className="space-y-6 px-8 pb-8" onSubmit={handleRegister}>
-                
-                {error && <p className="text-red-500 text-center font-bold">{error}</p>}
 
-                {/* Linha 1: Nome Completo */}
+            <form className="space-y-5 px-8 py-8" onSubmit={handleRegister}>
+                
+                {error && (
+                    <div className="bg-red-100 border-2 border-red-600 p-2 text-red-600 text-center font-black uppercase text-xs">
+                        {error}
+                    </div>
+                )}
+
+                {/* Campo: Nome Completo */}
                 <div className="space-y-1">
-                    <label htmlFor="nome" className="block text-sm font-bold uppercase">NOME COMPLETO</label>
-                    <input type="text" id="nome" value={formData.nome} onChange={handleInputChange} className="w-full border-2 border-black p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <label htmlFor="nome" className="block text-xs font-black uppercase text-black">Nome Completo</label>
+                    <input
+                        type="text"
+                        id="nome"
+                        value={formData.nome}
+                        onChange={handleInputChange}
+                        placeholder="SEU NOME COMPLETO"
+                        className="w-full border-2 border-black p-2 text-sm font-bold focus:bg-yellow-50 outline-none focus:outline-none focus:ring-4 focus:ring-blue-500"
+                        required
+                    />
                 </div>
 
-                {/* Linha 2: CPF e Nascimento */}
-                <div className="grid grid-cols-2 gap-4">
+                {/* Linha: CPF e Nascimento */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1">
-                        <label htmlFor="cpf" className="block text-sm font-bold uppercase">CPF</label>
-                        <input type="text" id="cpf" value={formData.cpf} onChange={handleInputChange} placeholder="000.000.000-00" className="w-full border-2 border-black p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                        <label htmlFor="cpf" className="block text-xs font-black uppercase text-black">CPF</label>
+                        <input
+                            type="text"
+                            id="cpf"
+                            value={formData.cpf}
+                            onChange={handleInputChange}
+                            placeholder="000.000.000-00"
+                            className="w-full border-2 border-black p-2 text-sm font-bold focus:bg-yellow-50 outline-none focus:outline-none focus:ring-4 focus:ring-blue-500"
+                            required
+                        />
                     </div>
+
                     <div className="space-y-1">
-                        <label htmlFor="dataNascimento" className="block text-sm font-bold uppercase"> DATA DE NASCIMENTO</label>
-                        <DatePicker 
-                            id="dataNascimento"
-                            format="DD/MM/YYYY" 
-                            style={{ width: "100%", border: "2px solid black", padding: "8px 12px", borderRadius: 0, boxShadow: 'none' }} 
-                            placeholder="DD/MM/AAAA" 
+                        <label className="block text-xs font-black uppercase text-black ">Data de Nascimento</label>
+                        <DatePicker
+                            format="DD/MM/YYYY"
+                            placeholder="DD/MM/AAAA"
                             onChange={handleDateChange}
+                            className="w-full"
+                            style={{
+                                border: '2px solid black',
+                                padding: '8px',
+                                borderRadius: '0px',
+                                fontWeight: 'bold'
+                            }}
                         />
                     </div>
                 </div>
 
-                {/* Linha 3: Telefone */}
+                {/* Campo: Telefone */}
                 <div className="space-y-1">
-                    <label htmlFor="telefone" className="block text-sm font-bold uppercase">TELEFONE</label>
-                    <input type="tel" id="telefone" value={formData.telefone} onChange={handleInputChange} placeholder="(00) 00000-0000" className="w-full border-2 border-black p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <label htmlFor="telefone" className="block text-xs font-black uppercase text-black">Telefone / WhatsApp</label>
+                    <input
+                        type="tel"
+                        id="telefone"
+                        value={formData.telefone}
+                        onChange={handleInputChange}
+                        placeholder="(00) 00000-0000"
+                        className="w-full border-2 border-black p-2 text-sm font-bold focus:bg-yellow-50 outline-none focus:outline-none focus:ring-4 focus:ring-blue-500"
+                        required
+                    />
                 </div>
 
-                {/* Linha 5: Email */}
+                {/* Campo: Email */}
                 <div className="space-y-1">
-                    <label htmlFor="email" className="block text-sm font-bold uppercase">EMAIL</label>
-                    <input type="email" id="email" value={formData.email} onChange={handleInputChange} className="w-full border-2 border-black p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <label htmlFor="email" className="block text-xs font-black uppercase text-black">E-mail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="seu@email.com"
+                        className="w-full border-2 border-black p-2 text-sm font-bold focus:bg-yellow-50 outline-none focus:outline-none focus:ring-4 focus:ring-blue-500"
+                        required
+                    />
                 </div>
-                
-                {/* Linha 6: Senha */}
+
+                {/* Campo: Senha */}
                 <div className="space-y-1">
-                    <label htmlFor="senha" className="block text-sm font-bold uppercase">SENHA</label>
-                    <input type="password" id="senha" value={formData.senha} onChange={handleInputChange} className="w-full border-2 border-black p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <label htmlFor="senha" className="block text-xs font-black uppercase text-black">Senha de Acesso</label>
+                    <input
+                        type="password"
+                        id="senha"
+                        value={formData.senha}
+                        onChange={handleInputChange}
+                        placeholder="••••••••"
+                        className="w-full border-2 border-black p-2 text-sm font-bold focus:bg-yellow-50 outline-none focus:outline-none focus:ring-4 focus:ring-blue-500"
+                        required
+                    />
                 </div>
-                
-                {/* Botão Criar Cadastro */}
-                <button type="submit" className="w-full py-2 mt-6 bg-black text-white font-extrabold text-lg uppercase border-4 border-black shadow-[4px_4px_0px_#000] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
-                    CRIAR CADASTRO
+
+                {/* Botão de Ação */}
+                <button
+                    type="submit"
+                    className="w-full py-4 mt-4 bg-green-500 text-black font-black text-xl uppercase border-4 border-black shadow-[6px_6px_0px_#000] transition-all hover:shadow-none hover:translate-x-1 hover:translate-y-1"
+                >
+                    Criar Cadastro
                 </button>
             </form>
         </div>
     );
 };
 
-// 2. Exporte o componente
 export default RegisterForm;

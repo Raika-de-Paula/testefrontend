@@ -83,13 +83,6 @@ export const AuthProvider = ({ children }) => {
     const signup = async (nome, email, password, cpf, dataNascimento, telefone) => {
         const cpfLimpo = cpf ? cpf.replace(/\D/g, '') : '';
         const telefoneLimpo = telefone ? telefone.replace(/\D/g, '') : '';
-        
-        if (cpfLimpo.length !== 11) {
-            return "O CPF deve conter exatamente 11 dígitos. Exemplo: 000.000.000-00";
-        }
-        if (telefoneLimpo.length !== 11) {
-            return "O numero de telefone deve conter exatamente 11 dígitos. Exemplo: (00) 00000-0000";
-        }
 
         try {
             const response = await fetch(`${API_BASE_URL}/users/signup`, {
