@@ -7,14 +7,12 @@ export default function SidebarMenu({ open, onClose }) {
 
   const { signed, signout } = useAuth();
   const navigate = useNavigate();
-  const location = useNavigate();
 
   const handleLogout = () => {
     signout();
     if(location.pathname === '/account'){
       navigate('/');
-    } else{
-        window.location.reload();} 
+      window.location.reload();} 
    };
 
   return (
