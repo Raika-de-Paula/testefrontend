@@ -143,12 +143,13 @@ const CoursesSection = ({ user }) => {
                         <CourseCard key={course.id || course._id} course={course} />
                     ))
                 ) : (
-                    <div className="border-8 border-dotted border-black p-16 text-center bg-white shadow-[10px_10px_0px_rgba(0,0,0,0.1)]">
-                        <BookOpenText className="w-20 h-20 text-black mx-auto mb-6" />
-                        <h3 className="text-2xl font-black uppercase mb-4">Sua grade está vazia!</h3>
+                    <div className="border-4 border-dashed border-blue-500 p-12 text-center bg-gray-50/50">
+                        <BookOpenText className="w-16 h-16 text-black mx-auto mb-4" />
+                        <h3 className="text-xl text-black font-bold mb-2">Nenhum curso matriculado</h3>
+                        <p className="text-gray-600 mb-6">Explore nossa grade e comece a estudar hoje mesmo.</p>
                         <button
                             onClick={() => navigate('/Courses')}
-                            className="py-4 px-10 bg-[#436adf] text-white font-black uppercase border-4 border-black shadow-[6px_6px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+                            className="py-3 px-8 bg-black text-white font-extrabold uppercase border-4 border-black shadow-[4px_4px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
                         >
                             DESCOBRIR CURSOS
                         </button>
