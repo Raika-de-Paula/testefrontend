@@ -76,72 +76,113 @@ const CoursesSection = ({ user }) => {
     const navigate = useNavigate();
     const enrolledCourses = user?.courses || [];
     const { unenrollCourse } = useAuth();
-
+  
+    // Componente interno para cada Card de Curso
     const CourseCard = ({ course }) => {
-        const handleUnenroll = async () => {
-            if (window.confirm(`Tem certeza que deseja trancar o curso: ${course.title}?`)) {
-                const error = await unenrollCourse(course.id);
-                if (error) alert(error);
-            }
-        };
+      // 1. ESTADOS PARA O ALERTA
+      const [showAlert, setShowAlert] = React.useState(false);
+  
+      // 2. HANDLER: CONFIRMAR TRANCAMENTO
+      const confirmUnenrollment = async () => {
+        setShowAlert(false);
+        const error = await unenrollCourse(course.id);
         
-        return (
-            <div className="bg-white border-4 border-black shadow-[6px_6px_0px_#000] px-6 pt-4 pb-6 flex flex-col md:flex-row justify-between items-start md:items-center min-h-[160px] transition-all rounded-lg hover:bg-gray-50">
-                <div className="space-y-3 flex-grow">
-                    <div>
-                        <h3 className="text-2xl mb-1 font-black text-black uppercase tracking-tight leading-none">
-                            {course.title}
-                        </h3>
-                        <p className="text-blue-600 font-bold uppercase text-sm italic">
-                            Professor: {course.teacherName}
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                        <div className="flex items-center gap-2 text-gray-700 font-bold text-sm">
-                            <Calendar className="w-4 h-4 text-black" /> {course.day || "Segunda-feira"}
-                        </div>
-                        <div className="flex items-center gap-2 text-gray-700 font-bold text-sm">
-                            <Clock className="w-4 h-4 text-black" /> {course.time || "19:00"}
-                        </div>
-                        <div className="flex items-center gap-2 text-gray-700 font-bold text-sm">
-                            <CalendarClock className="w-4 h-4 text-black" /> {course.duration || "40h"}
-                        </div>
-                        <div className="flex items-center gap-2 text-gray-700 font-bold text-sm">
-                            <Mail className="w-4 h-4 text-black" /> {course.teacherEmail}
-                        </div>
-                    </div>
+        if (error) {
+          // Se você tiver o toast configurado na página Account, use toast.error
+          alert(`Falha ao trancar o curso: ${error}`);
+        } else {
+          // Opcional: toast.success(`Curso trancado: ${course.title}`);
+        }
+      };
+  
+      return (
+        // O card precisa de position relative para o alerta flutuar dentro dele
+        <div className="bg-white border-4 border-black shadow-[6px_6px_0px_#000] px-6 pt-4 pb-6 flex flex-col md:flex-row justify-between items-start md:items-center min-h-[160px] transition-all rounded-lg hover:bg-gray-50 relative overflow-hidden">
+          
+          {/* 3. ALERTA DE CONFIRMAÇÃO (SOBREPOSIÇÃO DENTRO DO CARD) */}
+          {showAlert && (
+            <div className="absolute inset-0 bg-white/95 z-20 p-4 flex items-center justify-center text-center">
+              <div className="w-full max-w-sm">
+                <h4 className="font-black text-black uppercase mb-1">Confirmação Necessária</h4>
+                <p className="text-sm font-bold text-gray-600 mb-4">
+                  Deseja trancar o curso "{course.title}"?
+                </p>
+                
+                <div className="flex flex-col gap-2">
+                  <button
+                    onClick={confirmUnenrollment}
+                    className="w-full py-2 bg-red-500 text-white font-black uppercase text-sm border-2 border-black shadow-[3px_3px_0px_#000] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
+                  >
+                    SIM, TRANCAR CURSO
+                  </button>
+                  <button
+                    onClick={() => setShowAlert(false)}
+                    className="w-full py-2 bg-white text-black font-black uppercase text-sm border-2 border-black shadow-[3px_3px_0px_#000] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
+                  >
+                    CANCELAR
+                  </button>
                 </div>
-
-                <div className="mt-4 md:mt-0 ml-0 md:ml-6">
-                    <button
-                        onClick={handleUnenroll}
-                        className="size-12 bg-red-500 flex items-center justify-center border-4 border-black shadow-[4px_4px_0px_#000]"
-                    >
-                        <Trash2 className="w-6 h-6 text-black" />
-                    </button>
-                </div>
+              </div>
             </div>
-        );
+          )}
+  
+          {/* CONTEÚDO DO CARD (Informações do curso) */}
+          <div className="space-y-3 flex-grow">
+            <div>
+              <h3 className="text-2xl mb-1 font-black text-black uppercase tracking-tight leading-none">
+                {course.title}
+              </h3>
+              <p className="text-blue-600 font-bold uppercase text-sm italic">
+                Professor: {course.teacherName}
+              </p>
+            </div>
+  
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div className="flex items-center gap-2 text-gray-700 font-bold text-sm">
+                <Calendar className="w-4 h-4 text-black" /> {course.day || "Segunda-feira"}
+              </div>
+              <div className="flex items-center gap-2 text-gray-700 font-bold text-sm">
+                <Clock className="w-4 h-4 text-black" /> {course.time || "19:00"}
+              </div>
+              <div className="flex items-center gap-2 text-gray-700 font-bold text-sm">
+                <CalendarClock className="w-4 h-4 text-black" /> {course.duration || "40h"}
+              </div>
+              <div className="flex items-center gap-2 text-gray-700 font-bold text-sm">
+                <Mail className="w-4 h-4 text-black" /> {course.teacherEmail}
+              </div>
+            </div>
+          </div>
+  
+          {/* BOTÃO DE LIXEIRA (Abre o alerta) */}
+          <div className="mt-4 md:mt-0 ml-0 md:ml-6 shrink-0">
+            <button
+              onClick={() => setShowAlert(true)}
+              className="size-12 bg-red-500 hover:bg-red-600 flex items-center justify-center border-4 border-black shadow-[4px_4px_0px_#000] transition-all active:shadow-none active:translate-x-1 active:translate-y-1"
+            >
+              <Trash2 className="w-6 h-6 text-black" />
+            </button>
+          </div>
+        </div>
+      );
     };
-
+  
     return (
-        <div className="flex flex-col">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 pt-24 shrink-0">
-                <h2 className="text-4xl font-black uppercase text-black italic">
-                    Meus Cursos
-                </h2>
-                <div className="px-6 py-3 bg-yellow-400 text-black font-black text-sm border-4 border-black shadow-[4px_4px_0px_#000] uppercase">
-                    {enrolledCourses.length} Matrículas Ativas
-                </div>
-            </div>
-
-            <div className="space-y-6 pb-20">
-                {enrolledCourses.length > 0 ? (
-                    enrolledCourses.map(course => (
-                        <CourseCard key={course.id || course._id} course={course} />
-                    ))
-                ) : (
+      <div className="flex flex-col">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 pt-24 shrink-0">
+          <h2 className="text-4xl font-black uppercase text-black italic">
+            Meus Cursos
+          </h2>
+          <div className="px-6 py-3 bg-yellow-400 text-black font-black text-sm border-4 border-black shadow-[4px_4px_0px_#000] uppercase">
+            {enrolledCourses.length} Matrículas Ativas
+          </div>
+        </div>
+  
+        <div className="space-y-6 pb-20">
+          {enrolledCourses.length > 0 ? (
+            enrolledCourses.map((course) => (
+              <CourseCard key={course.id || course._id} course={course} />
+            ))
+          ) : (
                     <div className="border-4 border-dashed border-blue-500 p-12 text-center bg-gray-50/50">
                         <BookOpenText className="w-16 h-16 text-black mx-auto mb-4" />
                         <h3 className="text-xl text-black font-bold mb-2">Nenhum curso matriculado</h3>
