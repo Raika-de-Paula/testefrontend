@@ -3,7 +3,7 @@ import { createContext, useEffect, useState, useCallback } from "react";
 
 export const AuthContext = createContext({});
 
-const API_BASE_URL = 'https://testebackend-seven.vercel.app'; 
+const API_BASE_URL = 'https://testebackend-ruddy.vercel.app'; 
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null); 
@@ -175,7 +175,7 @@ export const AuthProvider = ({ children }) => {
     // =========================================================
     // FUNÇÃO ENROLLCOURSE (MATRÍCULA)
     // =========================================================
-    const enrollCourse = async (course) => {
+    const enrollCourse = async (course, teacher) => {
         if (!token) return "Usuário não autenticado.";
     
         try {
@@ -189,10 +189,10 @@ export const AuthProvider = ({ children }) => {
                     courseId: course.id,
                     title: course.title,
                     duration: course.duration,
-                    name: course.teacher?.name || course.teacher,
+                    teacherName: teacher?.name || "indisponivel",
                     day: course.day,
                     time: course.time,
-                    teacherEmail: course.email || course.teacherEmail ||  course.teacher?.email
+                    teacherEmail: teacher?.email || "contato@escola.com"
                 }),
             });
     

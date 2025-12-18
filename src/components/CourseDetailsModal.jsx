@@ -42,13 +42,8 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
     //==========================================
     //ROTA: USUARIO LOGADO E NAO MATRICULADO
     //==========================================
-    const courseWhithFullData = {
-      ...course,
-      teacherEmail: professor?.email,
-      teacherName: professor?.name || course.teacher
-    };
-
-    const error = await enrollCourse(courseWhithFullData);
+    
+    const error = await enrollCourse(course, teacher);
 
     if(error){
       toast.error(`Falha na matrícula: ${error}`);
@@ -95,7 +90,7 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
         
         {/* ALERTA DE CONFIRMAÇÃO (SOBREPOSIÇÃO) */}
         {showAlert && (
-          <div className="absolute inset-0 bg-white/90 z-10 p-6 rounded-lg">
+          <div className="absolute inset-0 bg-white/90 z-10 p-6 rounded-lg flex flex-col items-center justify-center">
             <Alert
               style={{
                 border: '3px solid black', // border-4 border-black
