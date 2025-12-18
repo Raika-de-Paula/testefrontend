@@ -12,7 +12,6 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import useAuth from '../hooks/useAuth';
 
-/* ---------------- FUNÇÃO AUXILIAR ---------------- */
 const formatUserData = (user) => {
   const name = user?.nome || 'Usuário';
 
@@ -30,7 +29,8 @@ const formatUserData = (user) => {
   };
 };
 
-/* ---------------- PROFILE CARD ---------------- */
+//=================================================
+//INFO DO PERFIL
 const ProfileCard = ({ student, onLogout }) => {
   const profileDetails = {
     EMAIL: student.email,
@@ -81,7 +81,9 @@ const ProfileCard = ({ student, onLogout }) => {
   );
 };
 
-/* ---------------- COURSE CARD ---------------- */
+//=======================================
+//INFO DOS CURSOS
+//========================================
 const CourseCard = ({ course, onUnenroll }) => {
   const [showAlert, setShowAlert] = React.useState(false);
 
@@ -154,7 +156,9 @@ const CourseCard = ({ course, onUnenroll }) => {
   );
 };
 
-/* ---------------- COURSES SECTION ---------------- */
+//====================================
+//CONTEUDO DO CURSO
+//=====================================
 const CoursesSection = ({ user }) => {
   const navigate = useNavigate();
   const { unenrollCourse } = useAuth();
@@ -209,7 +213,9 @@ const CoursesSection = ({ user }) => {
   );
 };
 
-/* ---------------- PAGE ---------------- */
+//==============================
+//PAGINA TODA
+//==============================
 export default function Account() {
   const { user, signed, signout } = useAuth();
   const navigate = useNavigate();

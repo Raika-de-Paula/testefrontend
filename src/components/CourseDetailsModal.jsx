@@ -170,7 +170,7 @@ export default function CourseDetailsModal({ course, teacher, onClose }) {
         <div className="p-6 shadow-[6px_6px_#000]">
           
           {/* Descrição do Curso */}
-          <p className="text-gray-950 mb-6">{course.desc}</p>
+          <p className="text-gray-950 mb-6">{course.descDetail}</p>
           
           {/* Bloco de Informações*/}
           {professor && (
